@@ -1,6 +1,6 @@
 {
   "name": "sphinx-npm",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "launcher for sphinx tool for building docs ofr npm packages",
   "main": "sphinx-npm.js",
   "dependencies": {},
