@@ -1,0 +1,29 @@
+{
+  "name": "sphinx-npm",
+  "version": "0.0.0",
+  "description": "launcher for sphinx tool for building docs ofr npm packages",
+  "main": "sphinx-npm.js",
+  "dependencies": {},
+  "devDependencies": {
+    "semver": ""
+  },
+  "bin": {
+    "sphinx-npm": "sphinx-npm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreypopp/sphinx-npm.git"
+  },
+  "homepage": "https://github.com/andreypopp/sphinx-npm",
+  "keywords": [
+    "docs",
+    "sphinx",
+    "npm"
+  ],
+  "author": {
+    "name": "Andrey Popp",
+    "email": "8mayday@gmail.com",
+    "url": "http://andreypopp.com"
+  },
+  "license": "MIT"
+}
