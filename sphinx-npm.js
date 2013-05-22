@@ -1,23 +1,22 @@
 #!/usr/bin/env node
 var spawn = require('child_process').spawn,
-		join = require('path').join;
+		path = require('path'),
+		join = path.join,
+		relative = path.relative;
 
 exports.main = function (srcdir) {
 	var cmdArgs = Array.prototype.slice.call(arguments, 1);
 	cmdArgs.splice(cmdArgs.length - 1, 0, srcdir);
-	var pkg = require(join(srcdir,  "package.json")),
+	var pkg = require('./' + relative(__dirname, join(srcdir,  "package.json"))),
 			author = pkg.author.name || pkg.author,
 			project = pkg.name,
 			version = pkg.version,
 			release = version,
-			q = function(v) {
-				return "\"" + v + "\"";
-			},
 			args = [
-				"-Dproject=" + q(project),
-				"-Dversion=" + q(version),
-				"-Drelease=" + q(release),
-				"-Dauthor="  + q(author),
+				"-Dproject=" + project,
+				"-Dversion=" + version,
+				"-Drelease=" + release,
+				"-Dauthor="  + author,
 				"-Dmaster_doc=README",
 				"-bsinglehtml",
 				"-C",
