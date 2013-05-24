@@ -1,13 +1,26 @@
 #!/usr/bin/env node
 var spawn = require('child_process').spawn,
-		path = require('path'),
-		join = path.join,
-		relative = path.relative;
+	exists = require('fs').existsSync,
+	path = require('path'),
+	dirname = path.dirname,
+	join = path.join,
+	relative = path.relative;
 
 exports.main = function (srcdir) {
 	var cmdArgs = Array.prototype.slice.call(arguments, 1);
 	cmdArgs.splice(cmdArgs.length - 1, 0, srcdir);
-	var pkg = require('./' + relative(__dirname, join(srcdir,  "package.json"))),
+
+	var packageFilename;
+	if (exists(join(srcdir, "package.json"))) {
+		packageFilename = join(srcdir, "package.json");
+	} else if (exists(join(dirname(srcdir), "package.json"))) {
+		packageFilename = join(dirname(srcdir), "package.json");
+	} else {
+		console.error("can't find package.json");
+		process.exit(1);
+	}
+
+	var pkg = require('./' + relative(__dirname, packageFilename)),
 			author = pkg.author.name || pkg.author,
 			project = pkg.name,
 			version = pkg.version,
